@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+<link rel="icon" type="image/png" href="/icon.png" />
+<link rel="author”https://plus.google.com/u/0/117552449084819540877/"/>
+<link rel=”publisher"https://plus.google.com/108026403298746305971/"/>
+<link href="styles.css" rel="stylesheet" type="text/css" media="screen" />
+
+<title>Clinic4PC - Standard Service Form</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="cache">
+<meta name="author" content="Brittney Oftedahl">
+<meta name="contact" content="mail@clinic4pc.com">
+<meta name "copyright" content="Copyright (c)2013 Clinic4PC.">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="google-site-verification" content="B71NsJ6RsfMXPXaGz0TdjM1-67V_y-C2y3gHLDPgyOU">
+<meta name="language" content="English">
+<meta name="revisit-after" content="1">
+<meta name="description" content="Is your computer slow and sickly, but you don't know where to begin? Well fret no longer, the doctors are in! Professional online, in-store, and in-home computer and laptop repair, virus removal, and PC maintenance services at flat rate prices. We also offer custom computers built to your specifications.">
+<meta name="keywords" content="seattle, computer, desktop, laptop, pc, repair, maintenance, service, IT, virus, spyware, malware, removal, bug, cleaning, help, linux, gnu, broken, fix, data, backup, back up, back-up, setup, set up, set-up, tuneup, tune up, tune-up, transfer, device, hardware, replace, replacement, installation, install, external, internal, operating system, software, printer, custom, build, cheap, affordable, discount, professional, friendly, certified, timely, online, remote, assist, assistance, in home, in-home, in store, in-store, washington, wa">
+
+		<style type="text/css">
+
+			* {
+				margin: 0;
+				padding: 0;
+				outline: 0;
+			}
+			BODY {
+				margin: 15px;
+				background-color: #FFFFFF;
+				color: #000000;
+				font-family: tahoma,verdana,arial,helvetica,sans-serif;
+				font-size: small;
+			}
+			TABLE INPUT {
+				padding: 5px;
+			}
+
+			.PANEL_BLOCK {
+				border-top: 1px solid #aaa;
+				padding: 10px;
+			}
+
+			.ServiceFormI {
+				margin-top: 1px;
+				transition: all 1s;
+			}
+			.ServiceFormIT LABEL {
+				margin-left: 10px;
+				font-weight: bold;
+			}
+			.ServiceFormIT B {
+				padding: 0 8px;
+			}
+			.ServiceFormIT SPAN {
+				font-style: italic;
+			}
+			.ServiceFormP {
+				font-weight: bold;
+			}
+			.ServiceFormIS {
+				margin-top: 10px;
+				padding: 10px;
+				background-color: #e0ffff;
+				border: 1px solid #21a298;
+				border-radius: 4px;
+			}
+
+		</style>
+
+		<script type="text/javascript">
+
+			var myform;
+
+			function CheckForm(form)
+			{
+				if (form.FullName.value         === '') {alert('First and last name must be entered.');form.FullName.focus();         return false;} else
+				if (form.PhoneNumber.value      === '') {alert('Phone number must be entered.');        form.PhoneNumber.focus();      return false;} else
+				if (form.EmailAddress.value     === '') {alert('Email must be entered.');               form.EmailAddress.focus();     return false;} else
+				if (form.PhysicalAddress.value  === '') {alert('Address must be entered.');             form.PhysicalAddress.focus();  return false;} else
+				if (form.Location.value         === '') {alert('City, State, and Zipcode must be entered.'); form.Location.focus();         return false;} else
+				if (form.ServiceTimeFrame.value === '') {alert('Please enter the date and time you\'d like services provided.');
+				form.ServiceTimeFrame.focus(); return false;}
+				//alert('Thank you for filling out our order form. Your submission has been forwarded to our email and will be read and addressed within the same service day.');
+				return true;
+			}
+
+			function createForm(id, options)
+			{
+				var
+					base, items = [], counter = 0, i, item_types = {ONL : 'Online', INS : 'In-Store', INH : 'In-Home'},
+					raiseEventUpdate = function(){};
+
+				function CreateElement(tag, att, css)
+				{
+					var element = document.createElement(tag), i;
+					if (att) {for (i in att) {if (att.hasOwnProperty(i)) {element[i] = att[i];}}}
+					if (css) {for (i in css) {if (css.hasOwnProperty(i)) {element.style[i] = css[i];}}}
+					element.add = function(){return this.appendChild(CreateElement.apply(this, arguments));};
+					return element;
+				}
+
+				function Item(options)
+				{
+					var
+						self = this,
+						e, i;
+
+					this.items = [];
+					this.name  = options.name;
+					this.text  = options.text;
+					this.base  = base.add('div', {className : id + 'I PANEL_BLOCK'});
+
+					e = this.base.add('span', {className : id + 'IT'});
+						this.field = e.add('input', {type : 'checkbox', name : options.name + '[item]', value : 1, id : id + counter, onclick : function()
+						{
+							self.opts.style.display = this.checked ? '' : 'none';
+							self.base.style.backgroundColor = this.checked ? '#dffdc7' : '';
+							if (self.items.length === 1) {self.items[0].field.checked = true;}
+							raiseEventUpdate();
+						}});
+						e.add('label', {innerHTML : options.text, htmlFor : id + counter++});
+						e.add('b', {innerHTML : '|'});
+						e.add('span', {innerHTML : options.desc});
+
+					this.opts = this.base.add('div', {}, {display : 'none'});
+					this.subs = this.opts.add('div');
+					this.opts.add('div', {innerHTML : 'Requests/Comments/Questions:'}, {paddingTop : '10px'});
+					this.opts.add('textarea', {name : options.name + '[comm]', cols : 30, rows : 2});
+
+					if (options.opts) {for (i in options.opts) {if (options.opts.hasOwnProperty(i)) {
+						this.add(options.opts[i]);
+					}}}
+
+				}
+				Item.prototype = {
+
+					add : function(options)
+					{
+						var
+							item = {
+								cost : options.cost,
+								base : this.subs.add('div', {className : id + 'IS'})
+							}, e;
+
+						e = item.base.add('span');
+							item.field = e.add('input', {type : 'radio', name : this.name + '[opts]', value : options.code, id : id + counter, onclick : function(){raiseEventUpdate();}});
+							e.add('label', {innerHTML : item_types[options.code] + ' - <span class="' + id + 'P">$' + (options.cost / 100).toFixed(2) + '</span>' + (options.disc ? ' - Save ' + options.disc + '%' : ''), htmlFor : id + counter++}, {paddingLeft : '10px'});
+
+						if (options.desc) {item.base.add('div', {innerHTML : '&bull; ' + String(options.desc).split(/\n/g).join('<br />&bull; ')}, {paddingTop : '10px'});}
+
+						this.items.push(item);
+					}
+
+				};
+
+				document.write('<div id="' + id + '"></div>');
+				base = document.getElementById(id).appendChild(CreateElement('div'));
+				for (i in options) {if (options.hasOwnProperty(i)) {items.push(new Item(options[i]));}}
+
+				return (function(hwnd)
+				{
+					raiseEventUpdate = function()
+					{
+						var
+							i, j, total = 0, count = 0;
+
+						for (i in items) {if (items.hasOwnProperty(i)) {if (items[i].field.checked) {
+							for (j in items[i].items) {if (items[i].items.hasOwnProperty(j)) {if (items[i].items[j].field.checked) {
+								count++;
+								total += items[i].items[j].cost;
+							}}}
+						}}}
+
+						hwnd.onchange({
+
+							items : count,
+							total : total
+
+						});
+					};
+					window.onload = function(){raiseEventUpdate();};
+					return hwnd;
+				}
+				({
+
+					validate : function()
+					{
+						var
+							i, j, valid, count = 0;
+
+						for (i in items) {if (items.hasOwnProperty(i)) {if (items[i].field.checked) {
+							count++;
+							valid = false;
+							for (j in items[i].items) {if (items[i].items.hasOwnProperty(j)) {
+								if (items[i].items[j].field.checked) {
+									valid = true;
+									break;
+								}
+							}}
+							if (!valid) {
+								alert('Please specify a type for "' + items[i].text + '"!');
+								items[i].field.focus();
+								return false;
+							}
+						}}}
+						if (!count) {
+							alert('Please select at least 1 item!');
+							return false;
+						}
+						return true;
+					},
+					onchange : function(){}
+
+				}));
+
+			}
+
+		</script>
+
+	</head>
+	<body>
+
+		<form method="post" action="/php/contact.php" onsubmit="return (CheckForm(this) && myform.validate());">
+
+			<div style="font-weight: bold; font-size: 2em; margin-bottom: 10px; text-align: center;">Clinic4PC Standard Service Form</div>
+
+			<div class="PANEL_BLOCK">
+				<div style="font-weight: bold;">Contact Information:</div>
+				<table border="0" cellspacing="10" cellpadding="0" style="margin: 5px 15px;">
+					<tr>
+						<td>First and Last Name:</td>
+						<td><input name="FullName" type="text" /></td>
+						<td>Phone Number:</td>
+						<td><input name="PhoneNumber" type="text" /></td>
+					</tr>
+					<tr>
+						<td>Email Address:<br>
+						(<i>No worries, we're spam-free.</i>)</td>
+						<td><input name="EmailAddress" type="text" /></td>
+						<td>Physical Address:</td>
+						<td><input name="PhysicalAddress" type="text" /></td>
+					</tr>
+					<tr>
+						<td>City, State, Zipcode:</td>
+						<td><input name="Location" type="text" /></td>
+						<td>Date and time (time frame)<br>you want services provided:</td>
+						<td><input name="ServiceTimeFrame" type="text" /></td>
+					</tr>
+					
+				</table>
+				<div><i>(Please select the services you require from the list below.)</i></div>
+			</div>
+
+			<script type="text/javascript">
+
+				myform = createForm('ServiceForm', [
+
+					{
+						name : 'CC',
+						text : 'Computer Cleaning',
+						desc : 'Computers collect dust and grime inside, and we can clean that out for you.',
+						opts : [
+							{
+								cost : 1999,
+								code : 'INS',
+								desc : 
+									'Remove dust from inside the computer. We suggest having your computer cleaned out every 6 months to provide proper airflow, and keep your components from caking with dust, grime, and pet hair to prevent overheating.'
+							}
+						]
+					},
+					{
+						name : 'VSR',
+						text : 'Virus & Spyware Removal',
+						desc : 'Is your computer slow and sickly? It could have picked up a virus or other type of malware while you were adventuring out in cyberspace. Luckily an infected computer can be cured, and the doctors are in!',
+						opts : [
+							{
+								cost : 3999,
+								code : 'ONL',
+								desc : 
+									'Install and setup anti-virus and anti-malware software. Enable security functions on anti-virus program. You can provide your own copies, or we can install recommended free anti-virus and anti-malware software.\n' +
+									'Enable security functions on anti-virus program.\n' +
+									'Optimize startup and shutdown, install Windows updates, remove unwanted browser toolbars, and create desired program shortcuts.\n' +
+									'Install ad-blocking add-on for Internet Explorer, Firefox, and Google Chrome if desired.\n' +
+									'Install add-on called Web of Trust if desired. This add-on shows userbase-rated website reputation in order of grey (unrated), red, yellow, and green.\n' +
+									'Online removal does a very good job, but sometimes there will be residual files leftover. Residual files are still tied to a service host but aren\'t quite as common to find, they can bog you down a bit still, but can be removed easily without internet connectivity in safemode, or during a boot scan.'
+							},
+							{
+								cost : 4999,
+								code : 'INS',
+								desc : 
+									'Install and setup anti-virus and anti-malware software. Enable security functions on anti-virus program. You can provide your own copies, or we can install recommended free anti-virus and anti-malware software.\n' +
+									'Enable security functions on anti-virus program.\n' +
+									'Optimize startup and shutdown, install Windows updates, remove unwanted browser toolbars, and create desired program shortcuts.\n' +
+									'Install ad-blocking add-on for Internet Explorer, Firefox, and Google Chrome if desired.\n' +
+									'Install add-on called Web of Trust if desired. This add-on shows userbase-rated website reputation in order of grey (unrated), red, yellow, and green.\n' +
+									'In-Store and In-Home removal, we will do all the hard work for you and make sure all traces of those pesky little bugs are goners.'
+							},
+							{
+								cost : 7999,
+								code : 'INH',
+								desc :  
+									'Don\'t bother unplugging your system, let us come to you.\n' +
+									'Install and setup anti-virus and anti-malware software. Enable security functions on anti-virus program. You can provide your own copies, or we can install recommended free anti-virus and anti-malware software.\n' +
+									'Enable security functions on anti-virus program.\n' +
+									'Optimize startup and shutdown, install Windows updates, remove unwanted browser toolbars, and create desired program shortcuts.\n' +
+									'Install ad-blocking add-on for Internet Explorer, Firefox, and Google Chrome if desired.\n' +
+									'Install add-on called Web of Trust if desired. This add-on shows userbase-rated website reputation in order of grey (unrated), red, yellow, and green.\n' +
+									'In-Store and In-Home removal, we will do all the hard work for you and make sure all traces of those pesky little bugs are goners.'
+							}
+						]
+					},
+					{
+						name : 'CTU',
+						text : 'Computer Tune-Up',
+						desc : 'It\'s like an oil change for your computer. Let us help you keep everything running smoothly.',
+						opts : [
+							{
+								cost : 3999,
+								code : 'ONL',
+								desc :
+									'Clean up browser and program cookies, and loose ends in your Windows registry.\n' +
+									'Schedule weekly system Disk Defragmenter.\n' +
+									'Removal of unwanted programs, browser toolbars, and trialware.\n' +
+									'Optimize startup and shutdown, install Windows updates, and create desired program shortcuts.\n' +
+									'Install anti-virus software. If you have your own copies of anti-virus software we can set up your install, otherwise we can install recommended free anti-virus software.\n' +
+									'Enable security functions on anti-virus program. Install an ad-blocking add-on in Internet Explorer, Firefox, and Google Chrome if desired.'
+							},
+							{
+								cost : 4999,
+								code : 'INS',
+								desc :
+									'Clean up browser and program cookies, and loose ends in your Windows registry.\n' +
+									'Schedule weekly system Disk Defragmenter.\n' +
+									'Removal of unwanted programs, browser toolbars, and trialware.\n' +
+									'Optimize startup and shutdown, install Windows updates, and create desired program shortcuts.\n' +
+									'Install anti-virus software. If you have your own copies of anti-virus software we can set up your install, otherwise we can install recommended free anti-virus software.\n' +
+									'Enable security functions on anti-virus program. Install an ad-blocking add-on in Internet Explorer, Firefox, and Google Chrome if desired.\n' +
+									'Remove dust from inside the computer.'
+							},
+							{
+								cost : 5999,
+								code : 'INH',
+								desc : 
+									'Don\'t bother unplugging your system, let us come to you.\n' +
+									'Clean up browser and program cookies, and loose ends in your Windows registry.\n' +
+									'Schedule weekly system Disk Defragmenter.\n' +
+									'Removal of unwanted programs, browser toolbars, and trialware.\n' +
+									'Optimize startup and shutdown, install Windows updates, and create desired program shortcuts.\n' +
+									'Install anti-virus software. If you have your own copies of anti-virus software we can set up your install, otherwise we can install recommended free anti-virus software.\n' +
+									'Enable security functions on anti-virus program. Install an ad-blocking add-on in Internet Explorer, Firefox, and Google Chrome if desired.'
+							}
+						]
+					},
+					{
+						name : 'HOSU',
+						text : 'Hardware & Operating System Update & Optimization',
+						desc : 'Graphics or colors looking glitchy? Can\'t load past BIOS? Is a process hogging all your CPU memory while idle? Generally if your computer isn\'t running properly and you don\'t have a virus, then you\'re probably in need of driver updates, or reconfiguration of your registry files.',
+						opts : [
+							{
+								cost : 2999,
+								code : 'INS',
+								desc :
+									'Install driver updates and Windows updates.\n' +
+									'Clean up browser and program cookies, and loose ends in your Windows registry. Fix registry problems if applicable.\n' +
+									'Optimize startup and shutdown, and create desired program shortcuts.\n' +
+									'Removal of unwanted programs, browser toolbars, and trialware.'
+							}
+						]
+					},
+					{
+						name : 'HINPB_I',
+						text : 'Hardware Installation (Internal, not pre-bought)',
+						desc : 'Need a piece of hardware replaced? We would gladly do it for you. The price of a replacement part can vary depending on type of part, and brand. Listed pricing is for base installation fee only.',
+						opts : [
+							{
+								cost : 4999,
+								code : 'INS',
+								desc :
+									'Purchase and installation of an internal PC component; such as an LCD screen (laptop), graphics card, hard drive, optical drive, or other components. (3-5 day shipment time should be expected.)\n' +
+									'Installation of any included software that is necessary for functionality on your computer.\n' +
+									'Install driver updates for component.\n' +
+									'Configuration of the PC component for applicable use.'
+							},
+							{
+								cost : 7999,
+								code : 'INH',
+								desc :
+									'Don\'t bother unplugging your system, let us come to you.\n' +
+									'Purchase and installation of an internal PC component; such as an LCD screen (laptop), graphics card, hard drive, optical drive, or other components. (3-5 day shipment time should be expected.)\n' +
+									'Installation of any included software that is necessary for functionality on your computer.\n' +
+									'Install driver updates for component.\n' +
+									'Configuration of the PC component for applicable use.'
+							}
+						]
+					},
+					{
+						name : 'HIPB_I',
+						text : 'Hardware Installation (Internal, pre-bought)',
+						desc : 'Need a piece of hardware repaired or replaced? We would gladly do it for you.',
+						opts : [
+							{
+								cost : 3999,
+								code : 'INS',
+								desc :
+									'Installation of an internal PC component; such as an LCD screen (laptop), graphics card, hard drive, optical drive, or other components. (3-5 day shipment time should be expected.)\n' +
+									'Installation of any included software that is necessary for functionality on your computer.\n' +
+									'Install driver updates for component.\n' +
+									'Configuration of the PC component for applicable use.'
+							},
+							{
+								cost : 7999,
+								code : 'INH',
+								desc :
+									'Don\'t bother unplugging your system, let us come to you.\n' +
+									'Installation of an internal PC component; such as an LCD screen (laptop), graphics card, hard drive, optical drive, or other components. (3-5 day shipment time should be expected.)\n' +
+									'Installation of any included software that is necessary for functionality on your computer.\n' +
+									'Install driver updates for component.\n' +
+									'Configuration of the PC component for applicable use.'
+							}
+						]
+					},
+					{
+						name : 'HIPB_E',
+						text : 'Hardware Installation (External)',
+						desc : 'Have a piece of hardware to install? We would gladly do it for you.',
+						opts : [
+							{
+								cost : 1999,
+								code : 'INS',
+								desc :
+									'Installation of an external PC component, such as an external hard drive, MP3 player, printer, scanner, microphone, or webcam.\n' +
+									'Installation of any included software that is necessary for functionality on your computer.\n' +
+									'Configuration of the PC component for applicable use.'
+							},
+							{
+								cost : 4999,
+								code : 'INH',
+								desc :
+									'Don\'t bother unplugging your system, let us come to you.\n' +
+									'Installation of an external PC component, such as an external hard drive, MP3 player, printer, scanner, microphone, or webcam.\n' +
+									'Installation of any included software that is necessary for functionality on your computer.\n' +
+									'Configuration of the PC component for applicable use.'
+							}
+						]
+					},
+					{
+						name : 'OSI',
+						text : 'Operating System Installation',
+						desc : 'The Operating System (OS) is the backbone of your computer. Because your OS affects everything that goes on in your system, installing a new one can be tricky. We handle Windows and GNU/Linux only.',
+						opts : [
+							{
+								cost : 3999,
+								code : 'INS',
+								desc :
+									'Install one Operating System on a functioning computer (OS not included).\n' +
+									'Install necessary drivers.\n' +
+									'Install Java (necessary), Adobe Flash (necessary), and GIF Viewer (optional) for viewing animated images without having to run Internet Explorer.\n' +
+									'Install all critical Windows updates.\n' +
+									'Test system for functionality.'
+							},
+							{
+								cost : 7999,
+								code : 'INH',
+								desc :
+									'Don\'t bother unplugging your system, let us come to you.\n' +
+									'Install one Operating System on a functioning computer (OS not included).\n' +
+									'Install necessary drivers.\n' +
+									'Install Java (necessary), Adobe Flash (necessary), and GIF Viewer (optional) for viewing animated images without having to run Internet Explorer.\n' +
+									'Install all critical Windows updates.\n' +
+									'Test system for functionality.'
+							}
+						]
+					},
+					{
+						name : 'DBT',
+						text : 'Data Backup or Transfer',
+						desc : 'Whether it\'s lightning damage or a spilled beverage, you never know when your computer is going to get fried. Take preventative action and have us keep all your data safe and secured.',
+						opts : [
+							{
+								cost : 1999,
+								code : 'ONL',
+								desc :
+									'Make a backup of your data to an external hard drive or other media.\n' +
+									'Install the software that came with your external hard drive to automate future backups.'
+							},
+							{
+								cost : 3999,
+								code : 'INS',
+								desc :
+									'Make a backup of your data to an external hard drive or other media.\n' +
+									'Transfer all your data from your old computer to your new computer.\n' +
+									'Make a backup of your data on disk. Disks come with cases for added protection. (Up to 9.4GB per disk. First disk included in price, $5 per each additional disk used for requested data backup size).\n' +
+									'Install the software that came with your external hard drive to automate future backups.'
+							},
+							{
+								cost : 7999,
+								code : 'INH',
+								desc :
+									'Don\'t bother unplugging your system, let us come to you.\n' +
+									'Make a backup of your data to an external hard drive or other media.\n' +
+									'Transfer all your data from your old computer to your new computer.\n' +
+									'Make a backup of your data on disk. Disks come with cases for added protection. (Up to 9.4GB per disk. First disk included in price, $5 per each additional disk used for requested data backup size).\n' +
+									'Install the software that came with your external hard drive to automate future backups.'
+							}
+						]
+					},
+					{
+						name : 'CS',
+						text : 'Computer Setup',
+						desc : 'We will hook you up. Schedule an appointment and we will come to your location to setup your PC.',
+						opts : [
+							{
+								cost : 7999,
+								code : 'INH',
+								desc :
+									'Physically setup one PC system; including the computer, monitor, keyboard, mouse, and speakers.\n' +
+									'Download and setup desired browsers.\n' +
+									'Hook up a printer, external hard drive, or other external devices (devices not included).\n' +
+									'Install software applications of your choice (software not included).\n' +
+									'Install Windows updates.'
+							}
+						]
+					},
+					{
+						name : 'CDS',
+						text : 'Computer Defense Setup',
+						desc : 'Don\'t leave your computer defenseless. We will help keep all your personal information safe by installing anti-virus and security software.',
+						opts : [
+							{
+								cost : 2999,
+								code : 'ONL',
+								desc :
+									'Install anti-virus software with current definitions and application updates. If you have your own purchased anti-virus software we can set up your install, otherwise we can install our recommended free anti-virus program.\n' +
+									'Install anti-malware software with current definitions and application updates. If you have your own purchased anti-malware software we can set up your install, otherwise we can install our recommended free anti-malware program.\n' +
+									'Improve PC speed and performance; including startup and shutdown optimization, installing Windows updates, and program shortcut creation.\n' +
+									'Enable basic security functions. Install an ad-blocking add-on in Internet Explorer, Firefox, and Google Chrome if desired.\n' +
+									'Removal of unwanted programs and trialware.'
+							},
+							{
+								cost : 3999,
+								code : 'INS',
+								desc :
+									'Install anti-virus software with current definitions and application updates. If you have your own purchased anti-virus software we can set up your install, otherwise we can install our recommended free anti-virus program.\n' +
+									'Install anti-malware software with current definitions and application updates. If you have your own purchased anti-malware software we can set up your install, otherwise we can install our recommended free anti-malware program.\n' +
+									'Improve PC speed and performance; including startup and shutdown optimization, installing Windows updates, and program shortcut creation.\n' +
+									'Enable basic security functions. Install an ad-blocking add-on in Internet Explorer, Firefox, and Google Chrome if desired.\n' +
+									'Removal of unwanted programs and trialware.\n' +
+									'Create recovery disk.'
+							},
+							{
+								cost : 5999,
+								code : 'INH',
+								desc :
+									'Install anti-virus software with current definitions and application updates. If you have your own purchased anti-virus software we can set up your install, otherwise we can install our recommended free anti-virus program.\n' +
+									'Install anti-malware software with current definitions and application updates. If you have your own purchased anti-malware software we can set up your install, otherwise we can install our recommended free anti-malware program.\n' +
+									'Improve PC speed and performance; including startup and shutdown optimization, installing Windows updates, and program shortcut creation.\n' +
+									'Enable basic security functions. Install an ad-blocking add-on in Internet Explorer, Firefox, and Google Chrome if desired.\n' +
+									'Removal of unwanted programs and trialware.\n' +
+									'Create recovery disk.'
+							}
+						]
+					},
+					{
+						name : 'SIS',
+						text : 'Software Install & Setup',
+						desc : 'We will get any software ready to go for you.',
+						opts : [
+							{
+								cost : 1999,
+								code : 'ONL',
+								desc :
+									'Determine computer compatibility for the installation or repair and configure software.\n' +
+									'Performance of necessary software updates.\n' +
+									'Creation of desktop, start menu, and quick launch bar access shortcuts.'
+							},
+							{
+								cost : 1999,
+								code : 'INS',
+								desc :
+									'Determine computer compatibility for the installation or repair and configure software.\n' +
+									'Performance of necessary software updates.\n' +
+									'Creation of desktop, start menu, and quick launch bar access shortcuts.'
+							},
+							{
+								cost : 4999,
+								code : 'INH',
+								desc :
+									'Don\'t bother unplugging your system, let us come to you.\n' +
+									'Determine computer compatibility for the installation or repair and configure software.\n' +
+									'Performance of necessary software updates.\n' +
+									'Creation of desktop, start menu, and quick launch bar access shortcuts.'
+							}
+						]
+					},
+					{
+						name : 'PRNT',
+						text : 'Printer Setup',
+						desc : 'Need a printer setup? We can do that for you.',
+						opts : [
+							{
+								cost : 1999,
+								code : 'ONL',
+								desc : 
+									'Setup and configuration of one printer.\n' +
+									'Install needed software and updates.\n' +
+									'Test device for proper functionality.'
+							},
+							{
+								cost : 4999,
+								code : 'INH',
+								desc : 
+									'Setup and configuration of one printer.\n' +
+									'Install needed software and updates.\n' +
+									'Test device for proper functionality.'
+							}
+						]
+					}
+
+				]);
+
+			</script>
+
+			<div class="PANEL_BLOCK">
+				<b><span style="color: #f00;"> IMPORTANT, PLEASE READ!</span></b><br />
+				<br />
+					<b>Terms of Service</b><br />
+					I hereby agree to the following Terms of Service upon submission of order:<br />
+					<br />
+					All personal information submitted is current as to knowledge.<br />
+					Clinic4PC will not be held liable for hardware and accessory order charges requested by customer.<br />Customer is liable for charges of all ordered hardware and software after the initial order is agreed upon and sent in.<br />
+					If you refuse to make full payment of agreed charges for services provided after 30 days, appropriate legal action will be taken.<br />
+					Online customers, please visit our <a href="/contact.html">contact</a> page to download TeamViewer, and email us your TeamViewer login information <br />from the email address you had provided, along with what time and date you'll be available for online support.<br />
+					All online customers must pay for their order in full using PayPal. PayPal also accepts credit card payments without need <br /> for registration. You can access this method from our <a href="/contact.html">contact</a> page.<br />
+					All non-local customers are only allowed purchase of online services. We do not want to be held liable for damages due to poor postal handling.<br />
+					All In-Store and In-Home services must be paid for in cash or check to the order of Brittney Oftedahl.<br />
+					<br />
+					Thank you for taking the time to read our ToS, and have a great day! :)
+			</div>
+
+			<div class="PANEL_BLOCK">
+				<input type="submit" value="Submit Form" /><span id="TotalAmount" style="padding-left: 10px;"></span>
+				<script type="text/javascript">
+
+					myform.onchange = function(x)
+					{
+						document.getElementById('TotalAmount').innerHTML = '<b>' + x.items + '</b> Item(s) selected | Total Amount: <b>$' + (x.total / 100).toFixed(2) + '</b>';
+					};
+
+				</script>
+				<div style="margin-top: 30px;"><b>Need help? Feel free to <a href="/contact.html">contact us</a> by phone, and we can help you fill out a form, and answer any questions you may have.</b></div>
+			</div>
+
+		</form>
+
+	</body>
+</html>

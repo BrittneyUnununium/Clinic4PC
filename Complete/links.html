@@ -1,0 +1,34 @@
+<A HREF="http://www.piriform.com/ccleaner/download">CCleaner</A><BR />
+<BR />
+<A HREF="http://www.avast.com/en-us/index">Avast anti-virus and anti-spyware</A><BR />
+<BR />
+<A HREF="http://windows.microsoft.com/en-us/windows/security-essentials-download">Microsoft Security Essentials</A><BR />
+<BR />
+<A HREF="http://www.malwarebytes.org/free/">Malwarebytes anti-malware</A><BR />
+<BR />
+<A HREF="http://adblockplus.org/en/">AdBlock Plus</A><BR />
+<BR />
+<A HREF="http://www.mywot.com/en/download">Web of Trust</A><BR />
+<BR />
+<A HREF="http://www.java.com/en/">Java</A><BR />
+<BR />
+<A HREF="http://get.adobe.com/flashplayer/">Adobe Flash Player</A><BR />
+<BR />
+<A HREF="http://en.kioskea.net/download/download-9815-gif-viewer">GIF Viewer</A><BR />
+<BR />
+<A HREF="http://www.cpuid.com/softwares/hwmonitor-pro.html">Hardware Monitor Pro (voltage, fans, temp, etc)</A><BR />
+<BR />
+<A HREF="http://technet.microsoft.com/en-us/sysinternals/bb896653.aspx">Process Explorer</A><BR />
+Setting the service's type to "own" instead of "shared" causes it to run in it's own process even while it remains in the same named group. It changes that service's Type value in HKLM/SYSTEM/CurrentControlSet/Services/@name@ to 16 instead of 32, causing the service to run in it's own host process. You don't have to do it manually in the registry, you can just run: sc.exe config [servicename] <option1> . You should run sc.exe config by itself to see the help, because it enumerates the options for type, and also lets you set services to start delayed, etc or change their group.
+After you make this change, you have to stop and start the service to get it to run in it's own host process. You can do that from the command-line using sc.exe stop [servicename] and sc.exe start [servicename]<BR />
+<BR />
+<A HREF="http://www.pcpitstop.com/betapit/pitstop.asp">PC Pitstop Over Drive Online Diagnostics Test</A><BR />
+To enable ActiveX settings:<BR />
+1. Open Internet Explorer.<BR />
+2. Click the Tools menu, then click Internet Options....<BR />
+3. Click the Security tab.<BR />
+4. Click the Internet icon, then click Default level to restore the Security level to Medium.<BR />
+5. Click OK.<BR />
+OR<BR />
+Internet Explorer as Admin> Internet Options> Security> Custom> Enable ActiveX functions.<BR />
+<BR />

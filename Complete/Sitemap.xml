@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+<url>
+  <loc>http://www.clinic4pc.com/</loc>
+  <lastmod>2013-12-07T16:21:57+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>http://www.clinic4pc.com/index.html</loc>
+  <lastmod>2013-12-07T16:21:57+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.clinic4pc.com/services.html</loc>
+  <lastmod>2013-12-07T16:21:57+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.clinic4pc.com/contact.html</loc>
+  <lastmod>2013-12-07T16:21:57+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>http://www.clinic4pc.com/standard_service_form.html</loc>
+  <lastmod>2013-12-07T16:21:57+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>http://www.clinic4pc.com/custom_pc_build_form.html</loc>
+  <lastmod>2013-12-07T16:21:57+00:00</lastmod>
+  <changefreq>hourly</changefreq>
+  <priority>0.64</priority>
+</url>
+</urlset>

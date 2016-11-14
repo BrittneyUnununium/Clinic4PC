@@ -1,0 +1,261 @@
+/* CSS Document */
+
+
+
+/* Color Legend */
+
+
+
+/* Global */
+
+html	{	}
+body	{ background-color:#FFF; }
+
+
+
+/* Headings */
+
+h1, h2, h3, h4, h5, h6 {font-family:Tahoma, Geneva, sans-serif; }
+
+h1 { font-size: 28px; color: #63F;  font-weight: bold;}
+h2 { font-size: 24px; color: #3CF;  font-weight: bold;}
+h3 { font-size: 20px;  font-weight: bold;}
+h4 { font-size: 18px;  font-weight: bold;}
+h5 { font-size: 16px; color: #FFF;  font-weight: normal;}
+h6 { font-size: 14px;  font-weight: normal;}
+
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img { margin: 0; }
+
+
+
+/* Text Elements */
+
+p				{	}
+p .left			{	}
+p .right		{	}
+
+a				{	}
+a:link			{	}
+a:visited		{	}
+a:active		{	}
+a:focus			{	}
+a:hover			{	}
+
+blockquote		{	}
+
+strong			{	}
+em				{	}
+
+/* Images */
+
+
+
+/* Lists */
+
+ul				{	}
+ol				{	}
+
+ul li			{	}
+ol li			{	}
+
+dl				{	}
+dt				{	}
+dd				{	}
+
+
+
+/* Tables */
+
+table			{	}
+
+tr				{	}
+.odd			{	}
+.even			{	}
+
+th				{	}
+thead, th		{	}
+
+tbody			{	}
+
+th, td, caption	{
+	font-family: Tahoma, Geneva, sans-serif;
+	color: #000;
+	text-align: left;
+}
+caption			{	}
+
+tfoot			{	}
+.tfooter		{	}
+
+caption			{	}
+
+
+
+/* Miscellaneous */
+
+sup, sub		{	}
+
+abbr, acronym	{	}
+address			{	}
+del				{	}
+
+code, pre		{ font-family:Tahoma, Geneva, sans-serif; font-size:17px; font-weight:normal; }
+					
+
+/* Containers */
+
+#wrapper			{  min-width:62%; max-width:100%; }
+
+#logo				{	}
+
+#social-media-icons	{	}
+
+#topnav				{	}
+
+#bananer			{	}
+
+#subbanner			{	}
+
+#leftside			{	}
+
+#rightside			{	}
+
+#content			{	}
+
+#special-offers-1	{color:#FFF; font-size:17px; font-family:Tahoma, Geneva, sans-serif; font-weight: normal; }
+
+#special-offers-2	{color:#FFF; font-size:17px; font-family:Tahoma, Geneva, sans-serif; font-weight: normal; }
+
+#special-offers-3	{color:#FFF; font-size:17px; font-family:Tahoma, Geneva, sans-serif; font-weight: normal; }
+
+#column-1			{color:#3CF; font-size:24px; font-family:Tahoma, Geneva, sans-serif; font-weight: bold; }
+
+#column-2			{color:#000; font-size:17px; font-family:Tahoma, Geneva, sans-serif; font-weight: normal; }
+
+#column-3			{color:#000; font-size:17px; font-family:Tahoma, Geneva, sans-serif; font-weight: normal; }
+
+#contact-info	{color:#000; font-size:17px; font-family:Tahoma, Geneva, sans-serif; font-weight:normal; text-align:left; }
+
+#footer				{	}
+
+
+#box1 {	}
+
+#box2 {	}
+
+#box3 {	}
+
+#box4 {	}
+
+#box5 {	}
+
+#box6 {	}
+
+
+/* Layout Extra */
+
+
+
+
+/* Navigation Extra */
+
+
+
+/* Forms */
+
+form		{	}
+
+label, submit, input, textarea	{	}
+	
+label		{	}
+	
+input, textarea	{	}
+	
+input		{	}
+	
+textarea 	{	}
+	
+select	{	}
+
+.submit 	{	}
+
+br 	{	}
+
+
+/* Miscellaneous */
+
+.copyright-text  {	}
+.footer-text	{	}
+
+.title			{	}
+.subtitle		{	}
+
+.artist			{	}
+.author			{	}
+.editor			{	}
+
+.pub-date		{	}
+.article-date	{	}
+.location		{	}
+
+.float-right	{	}
+.float-left		{	}
+.clear			{	}
+
+.hide			{	}
+.block			{	}
+.inline			{	}
+
+.first			{	}
+.last			{	}
+.left			{	}
+.right			{	}
+
+.added			{	}
+.removed		{	}
+.changed		{	}
+
+
+/* Success, info, notice and error/alert boxes - from Blueprint CSS Framework */
+
+.error, .alert, .notice, .success, .info {
+	padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
+	
+.error, .alert	{ background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
+
+.notice			{ background: #fff6bf; color: #514721; border-color: #ffd324; }
+
+.success		{ background: #e6efc2; color: #264409; border-color: #c6d880; }
+
+.info			{ background: #d5edf8; color: #205791; border-color: #92cae4; }
+
+.error a	{ color: #8a1f11; }
+.alert a	{ color: #8a1f11; }
+
+.notice a	{ color: #514721; }
+.success a	{ color: #264409; }
+.info a		{ color: #205791; }
+
+
+
+
+
+	
+#Table_01 tr #special-offers-type-2 td b {
+	color: #FFF;
+}
+#Table_01 tr #column-1 td {
+	color: #63F;
+}
+#Table_01 tr td font b {
+	text-align: right;
+}
+#Table_01 tr td font b {
+	text-align: left;
+}
+b {
+	text-align: right;
+}
+iframe {
+	text-align: left;
+}

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+<link rel="icon" type="image/png" href="/icon.png" />
+<link rel="author”https://plus.google.com/u/0/117552449084819540877/"/>
+<link rel=”publisher"https://plus.google.com/108026403298746305971/"/>
+<link href="styles.css" rel="stylesheet" type="text/css" media="screen" />
+
+<title>Clinic4PC - Custom PC Build Form</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="cache">
+<meta name="author" content="Brittney Oftedahl">
+<meta name="contact" content="mail@clinic4pc.com">
+<meta name "copyright" content="Copyright (c)2013 Clinic4PC.">
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow">
+<meta name="google-site-verification" content="B71NsJ6RsfMXPXaGz0TdjM1-67V_y-C2y3gHLDPgyOU">
+<meta name="language" content="English">
+<meta name="revisit-after" content="1">
+<meta name="description" content="Is your computer slow and sickly, but you don't know where to begin? Well fret no longer, the doctors are in! Professional online, in-store, and in-home computer and laptop repair, virus removal, and PC maintenance services at flat rate prices. We also offer custom computers built to your specifications.">
+<meta name="keywords" content="seattle, computer, desktop, laptop, pc, repair, maintenance, service, IT, virus, spyware, malware, removal, bug, cleaning, help, linux, gnu, broken, fix, data, backup, back up, back-up, setup, set up, set-up, tuneup, tune up, tune-up, transfer, device, hardware, replace, replacement, installation, install, external, internal, operating system, software, printer, custom, build, cheap, affordable, discount, professional, friendly, certified, timely, online, remote, assist, assistance, in home, in-home, in store, in-store, washington, wa, spokane valley, aispangle">
+
+		<style type="text/css">
+
+			* {
+				margin: 0;
+				padding: 0;
+				outline: 0;
+			}
+			BODY {
+				margin: 15px;
+				background-color: #FFFFFF;
+				color: #000000;
+				font-family: tahoma,verdana,arial,helvetica,sans-serif;
+				font-size: small;
+			}
+			TABLE INPUT {
+				padding: 5px;
+			}
+
+			.PANEL_BLOCK {
+				border-top: 1px solid #aaa;
+				padding: 10px;
+			}
+
+			.CustomFormI {
+				margin-top: 1px;
+			}
+			.CustomFormIT {
+				font-weight: bold;
+			}
+			.CustomFormIS {
+				margin-top: 10px;
+				padding-left: 5px;
+			}
+
+		</style>
+
+		<script type="text/javascript">
+
+			var myform;
+
+			function CheckForm(form)
+			{
+				if (form.FullName.value         === '') {alert('First and last name must be entered.');form.FullName.focus();         return false;} else
+				if (form.PhoneNumber.value      === '') {alert('Phone number must be entered.');        form.PhoneNumber.focus();      return false;} else
+				if (form.EmailAddress.value     === '') {alert('Email must be entered.');               form.EmailAddress.focus();     return false;} else
+				if (form.PhysicalAddress.value  === '') {alert('Address must be entered.');             form.PhysicalAddress.focus();  return false;} else
+				if (form.Location.value         === '') {alert('City, State, and Zipcode must be entered.'); form.Location.focus();         return false;} else
+				if (form.ServiceTimeFrame.value === '') {alert('Please enter the date and time you\'d like services provided.');
+				form.ServiceTimeFrame.focus(); return false;}
+				//alert('Thank you for filling out our order form. Your submission has been forwarded to our email and will be read and addressed within the same service day.');
+				return true;
+			}
+
+			function createForm(id, options)
+			{
+
+				var
+					base, items = [], counter = 0, i;
+
+				function CreateElement(tag, att, css)
+				{
+					var element = document.createElement(tag), i;
+					if (att) {for (i in att) {if (att.hasOwnProperty(i)) {element[i] = att[i];}}}
+					if (css) {for (i in css) {if (css.hasOwnProperty(i)) {element.style[i] = css[i];}}}
+					element.add = function(){return this.appendChild(CreateElement.apply(this, arguments));};
+					return element;
+				}
+
+				function Item(options)
+				{
+					var
+						i;
+
+					this.items = [];
+					this.base  = base.add('div', {className : id + 'I PANEL_BLOCK'});
+					this.base.add('div', {className : id + 'IT', innerHTML : options.text});
+
+					if (options.opts) {for (i in options.opts) {if (options.opts.hasOwnProperty(i)) {
+						this.add(options.opts[i]);
+					}}}
+				}
+				Item.prototype = {
+
+					add : function(options)
+					{
+						var
+							item = {
+								flag : options.flag,
+								base : this.base.add('div', {className : id + 'IS'})
+							}, i, e;
+
+						if (options.text && (8 & ~item.flag)) {item.base.add('div', {innerHTML : '&bull; ' + options.text}, {marginBottom : '3px'});}
+						if (options.opts) {
+							if (8 & item.flag) { //HYBRID SELECTION
+								e = item.base.add('div');
+								e.add('input', {type : 'checkbox', name : options.name + '[item]', value : 1, id : id + counter});
+								e.add('label', {innerHTML : options.text, htmlFor : id + counter++}, {paddingLeft : '10px'});
+								for (i in options.opts) {if (options.opts.hasOwnProperty(i)) {
+									e = item.base.add('div');
+									e.add('input', {type : 'radio', name : options.name + '[opts]', value : i, id : id + counter});
+									e.add('label', {innerHTML : options.opts[i], htmlFor : id + counter++}, {paddingLeft : '10px'});
+								}}
+							} else
+							if (4 & item.flag) { //CHECKBOX SELECTION
+								for (i in options.opts) {if (options.opts.hasOwnProperty(i)) {
+									e = item.base.add('div');
+									e.add('input', {type : 'checkbox', name : options.name + '[item][]', value : i, id : id + counter});
+									e.add('label', {innerHTML : options.opts[i], htmlFor : id + counter++}, {paddingLeft : '10px'});
+								}}
+							} else
+							if (2 & item.flag) { //RADIO SELECTION
+								for (i in options.opts) {if (options.opts.hasOwnProperty(i)) {
+									e = item.base.add('div');
+									e.add('input', {type : 'radio', name : options.name + '[item]', value : i, id : id + counter});
+									e.add('label', {innerHTML : options.opts[i], htmlFor : id + counter++}, {paddingLeft : '10px'});
+								}}
+							}
+						}
+						if (1 & item.flag) { //COMMENT BLOCK
+							item.base.add('textarea', {cols : 30, rows : 2, name : options.name + '[comm]'}, {marginTop : '5px'});
+						}
+
+						this.items.push(item);
+					}
+
+				};
+
+				document.write('<div id="' + id + '"></div>');
+				base = document.getElementById(id).appendChild(CreateElement('div'));
+				for (i in options) {if (options.hasOwnProperty(i)) {items.push(new Item(options[i]));}}
+
+				//console.log(items); //TODO: REMOVE
+
+				return {
+
+					validate : function()
+					{
+						return true;
+					}
+
+				};
+			}
+
+		</script>
+
+	</head>
+	<body>
+
+		<form method="post" action="/php/custom.php" onsubmit="return (CheckForm(this) && myform.validate());">
+
+			<div style="font-weight: bold; font-size: 2em; margin-bottom: 10px; text-align: center;">Clinic4PC Custom PC Build Form</div>
+
+			<div class="PANEL_BLOCK">
+				<div style="font-weight: bold;">Contact Information:</div>
+				<table border="0" cellspacing="10" cellpadding="0" style="margin: 5px 15px;">
+					<tr>
+						<td>First and Last Name:</td>
+						<td><input name="FullName" type="text" /></td>
+						<td>Phone Number:</td>
+						<td><input name="PhoneNumber" type="text" /></td>
+					</tr>
+					<tr>
+						<td>Email Address:<br>
+						(<i>No worries, we're spam-free.</i>)</td>
+						<td><input name="EmailAddress" type="text" /></td>
+						<td>Physical Address:</td>
+						<td><input name="PhysicalAddress" type="text" /></td>
+					</tr>
+					<tr>
+						<td>City, State, Zipcode:</td>
+						<td><input name="Location" type="text" /></td>
+						<td>Date and time (time frame)<br>you want services provided:</td>
+						<td><input name="ServiceTimeFrame" type="text" /></td>
+					</tr>
+				</table>
+			</div>
+
+			<div class="PANEL_BLOCK">
+				Flat assembly/prep price: Basic - $100 (Orders $800 and under).<br />
+				Flat assembly/prep price: Advanced - $150 (Orders $801-1400).<br />
+				Flat assembly/prep price: Advanced - $200 (Orders over $1400).
+			</div>
+
+			<script type="text/javascript">
+
+				myform = createForm('CustomForm', [
+
+					{
+						text : 'Ideal price range for PC build',
+						opts : [
+							{
+								flag : 3,
+								name : 'pricerange',
+								opts : {
+									'$400-600'   : '$400-600',
+									'$600-800'   : '$600-800',
+									'$800-1000'  : '$800-1000',
+									'$1000-1200' : '$1000-1200',
+									'$1200-1400' : '$1200-1400',
+									'$1400-1800' : '$1400-1800',
+									'$1800-2200' : '$1800-2200',
+									'$2200-2600' : '$2200-2600',
+									'$2600-3000' : '$2600-3000',
+									'$3000+'     : '$3000+ (Specify details in comment field).'
+								}
+							}
+						]
+					},
+					{
+						text : 'General intention of use',
+						opts : [
+							{
+								flag : 3,
+								name : 'usagetype',
+								opts : {
+									'General'       : 'General usage - Web browsing, flash games, video streaming.',
+									'Gaming'        : 'Gaming - Online gaming, graphic-intensive gaming.',
+									'Video Editing' : 'Video editing/rendering.',
+									'Other'         : 'Other (Please explain in text field).'
+								}
+							}
+						]
+					},
+					{
+						text : 'Necessary components<br>(Feel free to leave requests/comments/questions in individual text fields).',
+						desc : '(Feel free to leave requests/comments/questions in individual text fields).',
+						opts : [
+							{
+								flag : 5,
+								text : 'Storage',
+								name : 'memoryhddssd',
+								opts : {
+									HDD : 'HDD (Standard, Hard Disc Drive).',
+									SDD : 'SSD (Solid State Drive).'
+								}
+							},
+							{
+								flag : 5,
+								text : 'Optical Drive',
+								name : 'opticaldrive',
+								opts : {
+									'CD'      : 'CD Reader/Writer.',
+									'DVD'     : 'DVD Reader/Writer.',
+									'Blu-Ray' : 'Blu-Ray Reader/Writer.'
+								}
+							},
+							{flag : 1, text : 'CPU', name : 'cpu'},
+							{
+								flag : 5,
+								text : 'CPU Cooler',
+								name : 'cpucooler',
+								opts : {
+									'CPU Cooler - Water' : 'Water-cooled (Uncheck for regular).'
+								}
+							},
+							{flag : 1, text : 'Motherboard',  name : 'motherboard'},
+							{flag : 1, text : 'RAM (Memory)', name : 'ram'},
+							{flag : 1, text : 'Video Card',   name : 'vga'},
+							{flag : 1, text : 'Power Supply', name : 'power'},
+							{flag : 1, text : 'Case',         name : 'case'}
+						]
+					},
+					{
+						text : 'Additional components',
+						opts : [
+							{
+								flag : 5,
+								name : 'expansioncardsnetworking',
+								opts : {
+									'Sound Card'              : 'Additional Sound Card.',
+									'Wired Network Adapter'   : 'Additional Wired Network Adapter.',
+									'Wireless Network Adapter': 'Wireless Network Adapter.'
+								}
+							},
+							{
+								flag : 5,
+								name : 'LEDFan',
+								opts : {
+									'Case Fan' : 'LED Case Fan Replacements:<br />Want a slick look for a clear case? Tell us what you\'re looking for.'
+								}
+							},
+							{
+								flag : 9,
+								text : 'Operating System',
+								name : 'operatingsystem',
+								opts : {
+									Windows : 'Windows 7.',
+									Linux   : 'GNU+Linux.'
+								}
+							}
+						]
+					}
+
+				]);
+
+			</script>
+
+			<div class="PANEL_BLOCK">
+				<b><span style="color: #f00;"> IMPORTANT, PLEASE READ!</span></b><br />
+				<br />
+					<b>Terms of Service</b><br />
+					I hereby agree to the following Terms of Service upon submission of order:<br />
+					<br />
+					All personal information submitted is current as to knowledge.<br />
+					Clinic4PC will not be held liable for hardware and accessory order charges requested by customer.<br />Customer is liable for charges of all ordered hardware and software after the initial order is agreed upon and sent in.<br />
+					If you refuse to make full payment of agreed charges for services provided after 30 days, appropriate legal action will be taken.<br />
+					Online customers, please visit our <a href="/contact.html">contact</a> page to download TeamViewer, and email us your TeamViewer login information <br />from the email address you had provided, along with what time and date you'll be available for online support.<br />
+					All online customers must pay for their order in full using PayPal. PayPal also accepts credit card payments without need <br /> for registration. You can access this method from our <a href="/contact.html">contact</a> page.<br />
+					All non-local customers are only allowed purchase of online services. We do not want to be held liable for damages due to poor postal handling.<br />
+					All In-Store and In-Home services must be paid for in cash or check to the order of Brittney Oftedahl.<br />
+					<br />
+					Thank you for taking the time to read our ToS, and have a great day! :)
+			</div>
+
+			<div class="PANEL_BLOCK">
+				<input type="submit" value="Submit Form" />
+				<div style="margin-top: 30px;"><b>Need help? Feel free to <a href="/contact.html">contact us</a> by phone, and we can help you fill out a form, and answer any questions you may have.</b></div>
+			</div>
+
+		</form>
+
+	</body>
+</html>
